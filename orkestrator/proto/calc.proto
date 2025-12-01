@@ -1,0 +1,27 @@
+syntax = "proto3"; // версия proto файлов
+package calc_proto; // название пакета
+option go_package = "github.com/veronicashkarova/server-for-calc/orkestrator/proto";
+
+// Сервис для работы с числами
+service CalculatorService {
+    // Метод получения чисел
+    rpc GetTask (EmptyRequest) returns (Task) {}
+    // Метод отправки результата
+    rpc GetResult (TaskResult) returns (EmptyResponse) {}
+}
+
+message EmptyRequest {}
+message EmptyResponse{}
+
+message Task {
+    int32 id = 1;
+    float arg1 = 2;
+    float arg2 = 3;
+    string operation = 4;
+    int32 operation_time = 5;
+}
+
+message TaskResult {
+    int32 id = 1;
+    float result = 2;
+}
